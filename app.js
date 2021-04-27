@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const Database = require('better-sqlite3')
 const express = require('express');
 const app = express();
-const port = 80;
+const port = 8080;
 const ejs = require('ejs');
 
 const db = new Database('./BotDB.db', { verbose: console.log });
