@@ -1,0 +1,21 @@
+<header>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</header>
+
+<body>
+    <h2 class="d-flex justify-content-center mt-3">Impostazioni BOT</h2>
+    <div class="justify-content-center m-5">
+        <div class="form-group justify-content-center">
+            <form action="/settings" method="POST">
+                <h3>Tempi</h3>
+                <p>Notte: <input class="form-control" type="number" name="notte" value="<%= Notte %>"></p>
+                <p>Votazione: <input class="form-control" type="number" name="giorno" value="<%= Giorno %>"></p>
+                <h3>Ruoli</h3>
+                <p>Contadino: <input class="form-control" type="input" name="cont" value="<%= Cont %>"></p>
+                <p>Lupo: <input class="form-control" type="input" name="lupo" value="<%= Lupo %>"></p>
+                <p>Veggente: <input class="form-control" type="input" name="vegg" value="<%= Vegg %>"></p>
+                <input class="btn btn-primary btn-lg btn-block" type="submit" id="submit-button">
+            </form>
+        </div>
+    </div>
+</body>
