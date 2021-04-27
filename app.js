@@ -4,6 +4,7 @@ const Database = require('better-sqlite3')
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+
 const ejs = require('ejs');
 
 const db = new Database('./BotDB.db', { verbose: console.log });
