@@ -451,7 +451,7 @@ function sleep(ms) {
 app.set("view engine", "ejs");
 app.use(express.urlencoded({
     extended: true
-}))
+}));
 
 app.get("/", function(req, res) {
     let querytempo = db.prepare("SELECT * FROM impostazioni");
@@ -459,14 +459,14 @@ app.get("/", function(req, res) {
     let queryruoli = db.prepare("SELECT Nome FROM ruoli");
     let ruoli = queryruoli.all();
 
-    res.render("admin", { Notte: tempi.TempoTurno, Giorno: tempi.TempoLinciaggio, Cont: ruoli[0].Nome, Lupo: ruoli[1].Nome, Vegg: ruoli[2].Nome });
-})
+    res.render("admin", { Notte: (ParseInt(tempi.TempoTurno) / 1000), Giorno: (ParseInt(tempi.TempoLinciaggio) / 1000), Cont: ruoli[0].Nome, Lupo: ruoli[1].Nome, Vegg: ruoli[2].Nome });
+});
 
 app.post("/settings", function(req, res) {
     if (req.body.notte && req.body.giorno && req.body.cont && req.body.lupo && req.body.vegg) {
 
         let querytempi = db.prepare("UPDATE impostazioni SET TempoTurno = ?, TempoLinciaggio = ?");
-        querytempi.run(req.body.notte, req.body.giorno);
+        querytempi.run(ParseInt(req.body.notte) * 1000, ParseInt(req.body.giorno) * 1000);
 
         let ruoli = [req.body.cont, req.body.lupo, req.body.vegg];
         let count = 1;
@@ -480,7 +480,7 @@ app.post("/settings", function(req, res) {
 
 
     res.redirect("/");
-})
+});
 
 app.listen(port, () => console.log('In ascolto sulla porta ' + port));
 
