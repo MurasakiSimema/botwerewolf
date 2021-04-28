@@ -459,14 +459,14 @@ app.get("/", function(req, res) {
     let queryruoli = db.prepare("SELECT Nome FROM ruoli");
     let ruoli = queryruoli.all();
 
-    res.render("admin", { Notte: (ParseInt(tempi.TempoTurno) / 1000), Giorno: (ParseInt(tempi.TempoLinciaggio) / 1000), Cont: ruoli[0].Nome, Lupo: ruoli[1].Nome, Vegg: ruoli[2].Nome });
+    res.render("admin", { Notte: (parseInt(tempi.TempoTurno) / 1000), Giorno: (parseInt(tempi.TempoLinciaggio) / 1000), Cont: ruoli[0].Nome, Lupo: ruoli[1].Nome, Vegg: ruoli[2].Nome });
 });
 
 app.post("/settings", function(req, res) {
     if (req.body.notte && req.body.giorno && req.body.cont && req.body.lupo && req.body.vegg) {
 
         let querytempi = db.prepare("UPDATE impostazioni SET TempoTurno = ?, TempoLinciaggio = ?");
-        querytempi.run(ParseInt(req.body.notte) * 1000, ParseInt(req.body.giorno) * 1000);
+        querytempi.run(parseInt(req.body.notte) * 1000, parseInt(req.body.giorno) * 1000);
 
         let ruoli = [req.body.cont, req.body.lupo, req.body.vegg];
         let count = 1;
