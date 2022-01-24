@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const ejs = require('ejs');
 
 const db = new Database('./BotDB.db', { verbose: console.log });
-const bot = new TelegramBot("1556225223:AAF_tvfI19gdRXCSwixOp7vBVxXrlKzIs9I", {
+const bot = new TelegramBot("<token>", {
     polling: true
 });
 
